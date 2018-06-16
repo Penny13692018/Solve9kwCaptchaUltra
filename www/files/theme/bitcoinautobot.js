@@ -8,20 +8,19 @@
 	var datasitekey = null; //save datasitekey from freebitcoin site
 	var answerforcaptcha = null; //save captcha answer get from 9kw
 	var autobotuse;
-	var i = 1;
+	var i = 1;	var passornot = null;
 	
 	//Define steps in freebitco.in website
 	function getdatasitekey()
 	{
 		iabRef.executeScript({code: "document.getElementsByClassName('g-recaptcha')[0].getAttribute('data-sitekey');"},function(value){datasitekey = value[0];});
-		//setTimeout(function(){ alert("datasitekey get:"+datasitekey); }, 3000);
 	}
 	
 	function InputCaptchaAnswer()
 	{
 		iabRef.executeScript({code: "(function() { var x = document.getElementById('g-recaptcha-response');x.style.display='';})()"});
 		iabRef.executeScript({code: "document.getElementById('g-recaptcha-response').value='"+answerforcaptcha+"';"});
-		setTimeout(ClickRoll, 5000);
+		setTimeout(ClickRoll, 1000);
 	}
 	
 	function ClickRoll()
@@ -29,22 +28,37 @@
 		iabRef.executeScript({code: "document.getElementById('free_play_form_button').click();"});
 	}
 	
+	function testPass()
+	{
+		//time_remaining
+		iabRef.executeScript({code: "document.getElementById('free_play_error').innerHTML;"},function(value){passornot = value[0];});
+	}
+	
 	function ForTheNextRoll()
 	{
-		answerforcaptcha=null;	datasitekey = null;
-		iabRef.executeScript({code: "document.getElementsByClassName('g-recaptcha')[0].getAttribute('data-sitekey');"},function(value){datasitekey = value[0];});
+		answerforcaptcha=null;	datasitekey = null;  passornot = null;
+		setTimeout(testPass, 7000);
 		
-		iabRef.close();
-		setTimeout(rollcheck, 5000);
+		setTimeout(rollcheck, 10000);
+		setTimeout(function(){iabRef.close()}, 12000);
 	}
 	
 	function rollcheck()
 	{
-		if(datasitekey==null)
+		//Debug
+		//alert("testPass get:"+passornot);
+		
+		if(passornot=="")
 			{autobotuse = setTimeout(myFunction, 3600000);} //Set 1hr for the next roll
 		
-		else
+		else if(passornot=='Captcha is incorrect or has expired. Please try again.')
 			{setTimeout(myFunction, 5000);} //Set 5sec for the next roll
+		else
+			{
+				startVibrate();
+				play_sound();
+				alert("testPass get:"+passornot+"\n Please check the problem and restart the autorun!");
+			}
 	}
 		
 	//Event Trigger in freebitco.in site
@@ -58,18 +72,20 @@
 		if(answerforcaptcha!=null && autobottimes.value!=null)
 		{
 			InputCaptchaAnswer();
-			setTimeout(ForTheNextRoll, 7000);
+			setTimeout(ForTheNextRoll, 8000);
 		}
 		
 		else if(answerforcaptcha!=null && autobottimes.value==null)
 		{
 			InputCaptchaAnswer();
-			setTimeout(function(){iabRef.close();answerforcaptcha=null;}, 7000);			
+			setTimeout(function(){iabRef.close()}, 6000);
+			setTimeout(function(){answerforcaptcha=null;}, 8000);
 		}	
 		else
 		{
 			getdatasitekey();
-			setTimeout(function(){ iabRef.close();	Show9kwWeb();}, 6000);
+			setTimeout(function(){ iabRef.close();}, 6000);
+			setTimeout(function(){ Show9kwWeb();}, 8000);
 		}
 	}
 	
@@ -97,7 +113,8 @@
 		if(getCookie('firsttimein')!='1')
 		{
 			alert("第一次請先登入freebitcoin帳號! 給您60秒登入~");		
-			setTimeout(function(){ setCookie('firsttimein','1',300); iabRef.addEventListener('loadstop', iabLoadStop);}, 60000);			
+			setTimeout(function(){ setCookie('firsttimein','1',300);}, 40000);
+			setTimeout(function(){ iabRef.addEventListener('loadstop', iabLoadStop);}, 60000);
 		}		 
 		 else
 		 {
@@ -148,6 +165,8 @@
 		if(datasitekey==null)
 		{
 			View9kw.close();
+			//For Debug
+			//alert("No datasitekey found!");
 			if(autobottimes.value!=null)
 			{
 				autobotuse = setTimeout(myFunction, 10000); //Set 10sec for the next roll since it's not ready now
@@ -169,11 +188,12 @@
 	
 	function Close9kw(event)
 	{
+		//For Debug
 		//alert('Captcha Answer Load:'+ answerforcaptcha +'\n temp flag:'+start9kw);
 		start9kw = null;
 		
 		if(answerforcaptcha!=null)
-		{openfreebitcoin();}
+		{setTimeout(openfreebitcoin, 5000);}
 	}
 	
 	function Show9kwWeb()
@@ -206,9 +226,9 @@
 	function stopautobot()
 	{
 		clearTimeout(autobotuse);
+		i=1;	autobottimes.value = null;	datasitekey = null;
 		alert("取消自動");
-		//clearInterval(autobotuse);
-		i=1;	autobottimes.value = null;
+		//clearInterval(autobotuse);	
 	}
 	
 	//Set vibration and sound

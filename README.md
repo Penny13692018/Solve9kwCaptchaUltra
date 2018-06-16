@@ -1,10 +1,10 @@
-# Solve9kwCaptcha 被蟲賺點數app [![bitHound Score][bithound-img]][bithound-url]
+# Solve9kwCaptchaPro 被蟲賺點數Pro 
 
-Changes in Version 1.4.3
-Add Bitcoin Autobot and No Ads!
+Changes in Version 1.4.4
+Add Bitcoin Autobot
 
-1.4.3版變動
-新增freebitocin 比特幣自動機器人! 去除廣告!
+1.4.4版變動
+新增freebitocin 比特幣自動機器人!
 
 
 Changes in Version 1.4.1
