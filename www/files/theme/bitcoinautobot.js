@@ -49,7 +49,7 @@
 		//alert("testPass get:"+passornot);
 		
 		if(passornot=="")
-			{autobotuse = setTimeout(myFunction, 3600000);} //Set 1hr for the next roll
+			{autobotuse = setTimeout(myFunction, 3595000);} //Set 1hr for the next roll
 		
 		else if(passornot=='Captcha is incorrect or has expired. Please try again.')
 			{setTimeout(myFunction, 5000);} //Set 5sec for the next roll
