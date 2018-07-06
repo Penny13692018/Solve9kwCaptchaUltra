@@ -1,4 +1,9 @@
 # Solve9kwCaptchaPro 被蟲賺點數Pro 
+Changes in Version 1.4.6
+Add no-captcha Bitcoin Autobot 
+
+1.4.6版變動
+新增無須解驗證碼時，不用9kw點數的freebitocin 比特幣自動機器人!
 
 Changes in Version 1.4.4
 Add Bitcoin Autobot

@@ -195,6 +195,17 @@ var STYLE_PREFIX = 'wsite';
 <div style="height: 20px; overflow: hidden; width: 100%;"></div></div>
 
 <div style="text-align:left;"><div style="height: 10px; overflow: hidden;"></div>
+<a class="wsite-button wsite-button-small wsite-button-normal" onclick="setCookie('noAutobot','1',30); alert('Reset after 30 days!');">
+<span class="wsite-button-inner">I don't have to solve Captcha!</span>
+</a>
+
+<a class="wsite-button wsite-button-small wsite-button-highlight" onclick="setCookie('noAutobot','0',30); alert('Reset after 30 days!');">
+<span class="wsite-button-inner">I have to solve Captcha!</span>
+</a>
+<div style="height: 10px; overflow: hidden;"></div></div>
+
+
+<div style="text-align:left;"><div style="height: 10px; overflow: hidden;"></div>
 <a class="wsite-button wsite-button-small wsite-button-normal" onclick="startautobot()">
 <span class="wsite-button-inner">開始 Start Autobot</span>
 </a>
@@ -294,7 +305,19 @@ var STYLE_PREFIX = 'wsite';
       },
       h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
     })(document);
-	document.getElementById("apikeyforsolve").value = getCookie('apikeyforsolve');
+	
+	if(getCookie('noAutobot')=='1')
+	{
+		document.getElementById("apikeyforsolve").value = "You don't need to solve captcha";
+	}
+	else if(getCookie('noAutobot')=='0')
+	{
+		document.getElementById("apikeyforsolve").value = getCookie('apikeyforsolve');
+	}
+	else
+	{
+		alert('Please press the button below to check whether to solve captcha，and then fill in the 9kw Apikey if you need to solve captcha!');
+	}
   </script>
 
   <script type="text/javascript" src="files/theme/plugins.js"></script>

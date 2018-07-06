@@ -115,7 +115,7 @@
 		 //指定使用者登入時間
 		if(getCookie('firsttimein')!='1')
 		{
-			alert("第一次請先登入freebitcoin帳號! 給您60秒登入~");		
+			alert("For login freebitcoin account! Give you 60 seconds~");		
 			setTimeout(function(){ setCookie('firsttimein','1',300);}, 40000);
 			setTimeout(function(){ iabRef.addEventListener('loadstop', iabLoadStop);}, 60000);
 		}		 
@@ -307,7 +307,7 @@
 		 //指定使用者登入時間
 		if(getCookie('firsttimein')!='1')
 		{
-			alert("第一次請先登入freebitcoin帳號! 給您60秒登入~");		
+			alert("For login freebitcoin account! Give you 60 seconds~");		
 			setTimeout(function(){ setCookie('firsttimein','1',300);}, 40000);
 			setTimeout(function(){ iabRefNoCaptcha.addEventListener('loadstop', iabLoadStopNoCaptcha);}, 60000);
 		}		 
@@ -335,7 +335,7 @@
 	//Start all loop--這段碼還有問題
 	function startautobot()
 	{
-		alert("Autobot 開始!");
+		alert("Autobot Start!");
 		
 		
 		if(getCookie('noAutobot')=='0')
@@ -353,7 +353,7 @@
 	{
 		clearTimeout(autobotuse);
 		i=1;	autobottimes.value = null;	datasitekey = null;
-		alert("取消自動");
+		alert("Autobot Stop!");
 		//clearInterval(autobotuse);	
 	}
 
