@@ -252,9 +252,9 @@
 		else if(passornot=="" && passornot2=="")
 			{autobotuse = setTimeout(myFunctionNoCaptcha, 3600000);} //Set 1hr for the next roll	
 		else if(passornot=='Captcha is incorrect or has expired. Please try again.')
-			{setTimeout(myFunctionNoCaptcha, 5000);} //Set 5sec for the next roll
+			{setTimeout(myFunctionNoCaptcha, 300000);} //Set 300 sec for the next roll
 		else if(passornot2.includes('Someone has already played from this IP in the last hour.'))
-			{setTimeout(myFunctionNoCaptcha, 5000);} //Set 5sec for the next roll
+			{setTimeout(myFunctionNoCaptcha, 300000);} //Set 300 sec for the next roll
 		else
 			{
 				startVibrate();
